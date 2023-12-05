@@ -27,7 +27,8 @@ No optional inputs.
 
 The following resources are used by this module:
 
-- [tfe_policy.AllowedProviders](https://registry.terraform.io/providers/hashicorp/tfe/0.48.0/docs/resources/policy) (resource)
+- [tfe_policy_set.this](https://registry.terraform.io/providers/hashicorp/tfe/0.48.0/docs/resources/policy_set) (resource)
+- [tfe_oauth_client.client](https://registry.terraform.io/providers/hashicorp/tfe/0.48.0/docs/data-sources/oauth_client) (data source)
 - [tfe_organization.this](https://registry.terraform.io/providers/hashicorp/tfe/0.48.0/docs/data-sources/organization) (data source)
 
 ## Outputs
