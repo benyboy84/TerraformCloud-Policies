@@ -1,4 +1,4 @@
-resource "tfe_policy" "AllowedProviders" {
+resource "tfe_policy" "allowed_providers" {
   name         = "allowed-providers"
   description  = "This policy is use to to restrict providers."
   organization = data.tfe_organization.this.name
