@@ -10,6 +10,6 @@ resource "tfe_policy_set" "this" {
     identifier         = "benyboy84/TerraformCloud-Policies"
     branch             = "main"
     ingress_submodules = false
-    oauth_token_id     = tfe_oauth_client.client.oauth_token_id
+    oauth_token_id     = data.tfe_oauth_client.client.oauth_token_id
   }
 }
