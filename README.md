@@ -21,7 +21,10 @@ No optional inputs.
 
 ## Resources
 
-No resources.
+The following resources are used by this module:
+
+- [tfe_policy.allowed-providers](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/policy) (resource)
+- [tfe_organization.this](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/data-sources/organization) (data source)
 
 ## Outputs
 
