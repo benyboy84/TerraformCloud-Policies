@@ -27,9 +27,6 @@ No optional inputs.
 
 The following resources are used by this module:
 
-- [tfe_policy_set.global](https://registry.terraform.io/providers/hashicorp/tfe/0.48.0/docs/resources/policy_set) (resource)
-- [tfe_organization.this](https://registry.terraform.io/providers/hashicorp/tfe/0.48.0/docs/data-sources/organization) (data source)
-- [tfe_slug.global](https://registry.terraform.io/providers/hashicorp/tfe/0.48.0/docs/data-sources/slug) (data source)
 
 ## Outputs
 
