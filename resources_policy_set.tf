@@ -4,7 +4,7 @@ data "tfe_slug" "global" {
 }
 
 resource "tfe_policy_set" "global" {
-  name          = "Global-Policy-Set"
+  name         = "Global-Policy-Set"
   description  = "This policy-set is assigned at the organization level."
   global       = true
   organization = data.tfe_organization.this.name
