@@ -9,13 +9,13 @@
 
 # Import common-functions/tfconfig-functions/tfconfig-functions.sentinel
 # with alias "config"
-import "../../functions/config-functions.sentinel" as config
+import "tfconfig-functions" as config
 
 # Standard strings import
 import "strings"
 
 # List of allowed providers
-allowed_list = ["aws", "azurerm", "azuread", "local", "null", "random", "terraform", "tfe"]
+allowed_list = ["aws", "azurerm", "azuread", "terraform", "tfe", "local", "null", "random", "time", "tls"]
 
 # Get all providers
 allProviders = config.find_all_providers()

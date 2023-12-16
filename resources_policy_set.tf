@@ -1,12 +1,14 @@
-data "tfe_slug" "this" {
-  // point to the local directory where the policies are located.
-  source_path = "policies-sets/global"
-}
+resource "tfe_policy_set" "global" {
+  name          = "Global-Policy-Set"
+  description   = "This policy-set is assigned at the organization level."
+  global        = true
+  organization  = data.tfe_organization.this.name
+  policies_path = "policy-sets/global"
 
-resource "tfe_policy_set" "this" {
-  name         = "Global"
-  description  = "This policy-set is assigned at the organization level."
-  organization = data.tfe_organization.this.name
-  global       = true
-  slug         = data.tfe_slug.this
+  vcs_repo {
+    identifier         = "benyboy84/TerraformCloud-Policies"
+    branch             = "main"
+    ingress_submodules = false
+    oauth_token_id     = data.tfe_oauth_client.client.id
+  }
 }
