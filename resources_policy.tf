@@ -1,5 +1,5 @@
 resource "tfe_policy" "allowed-providers" {
-  name         = "Allowed Providers"
+  name         = "allowed-providers"
   description  = "This policy uses the tfconfig/v2 import to restrict providers to those in an allowed list."
   organization = data.tfe_organization.this.name
   kind         = "sentinel"
