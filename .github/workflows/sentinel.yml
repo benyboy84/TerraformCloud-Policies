@@ -31,10 +31,10 @@ jobs:
       - name: Find Policies
         id: policies
         run: |
-          policies=$(find . -name "*.sentinel" | grep -v -e "/test/" | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')
+          policies=$(find . -name "*.sentinel" | grep -v -e "/test/" | sed 's/.sentinel//g' | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')
           echo -e "Policies:"
           echo -e "$policies"
-          echo "policies=$(find . -name "*.sentinel" | grep -v -e "/test/" | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
+          echo "policies=$(find . -name "*.sentinel" | grep -v -e "/test/" | sed 's/.sentinel//g' | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
 
   job2:
     name: Sentinel Test
@@ -55,5 +55,5 @@ jobs:
         with:
           stl_actions_version: 0.14.2
           stl_actions_subcommand: 'test'
-          stl_actions_working_dir: '${{ matrix.policies | sed 's/.sentinel//g' }}'
+          stl_actions_working_dir: '${{ matrix.policies }}'
           stl_actions_comment: true
