@@ -41,8 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    strategy:
-      matrix:
-        policies: ${{ fromJson(needs.job1.outputs.policies) }}
+    # strategy:
+    #   matrix:
+    #     policies: ${{ fromJson(needs.job1.outputs.policies) }}
     steps: 
-      - run: echo ${{ matrix.policies }}
+      - run: echo ${{ fromJson(needs.job1.outputs.policies) }}
