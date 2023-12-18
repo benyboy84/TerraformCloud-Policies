@@ -30,7 +30,7 @@ jobs:
 
       - name: Find Policies
         id: policies
-        run: echo "policies=$(find /policies/ -type d | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
+        run: echo "policies=$(find policies/ -type d -maxdepth 1 | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
 
   job2:
     name: Sentinel Test
