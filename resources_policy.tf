@@ -1,6 +1,6 @@
 resource "tfe_policy" "this" {
   for_each = local.files
-  name     = element(split("/", each.key), length(each.key) - 1)
+  name     = element(split("/", each.key), length(each.key))
   # name     = element(split(".", element(split("/", each.key), length(each.key) - 1)), 2)
   # description  = ""
   organization = data.tfe_organization.this.name
