@@ -31,10 +31,10 @@ jobs:
       - name: Find Policies
         id: policies
         run: |
-          policies=$(find . -name "*.sentinel" | grep -v -e "/test/" | sed 's/.sentinel//g' | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')
+          policies=$(ls -d ./policies | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')
           echo -e "Policies:"
           echo -e "$policies"
-          echo "policies=$(find . -name "*.sentinel" | grep -v -e "/test/" | sed 's/.sentinel//g' | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
+          echo "policies=$(ls -d ./policies | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
 
   job2:
     name: Sentinel Test
