@@ -16,19 +16,28 @@ permissions:
   pull-requests: write
 
 jobs:
-  policies:
+  job1:
     name: Find Policies
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    output:
+      policies: ${{ steps.policies.outputs.policies }}
     steps:
 
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: policies
+      - name: Find Policies
         id: policies
         run: |
           policies=$(find . -name "*.sentinel" | grep -v -e "/test/")
           echo -e "Policies:"
           echo -e "$policies"
+          echo "policies=${policies}" >> "$GITHUB_OUTPUT"
+
+  job2:
+    name: Policies Testing
+    strategy:
+      matrix:
+        policies: ${{ needs.job1.outputs.policies }}
