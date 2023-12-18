@@ -53,9 +53,9 @@ jobs:
           ref: ${{ steps.branch.outputs.branch }}
 
       - name: 'Sentinel Test'
-        uses: hashicorp/sentinel-github-actions@master
+        uses: hashicorp/sentinel-github-actions@v0.7
         with:
-          stl_actions_version: 'latest'
-          stl_actions_subcommand: 'test'
-          stl_actions_working_dir: '${{ matrix.policies }}'
+          stl_actions_version: latest
+          stl_actions_subcommand: test
+          stl_actions_working_dir: ${{ matrix.policies }}
           stl_actions_comment: true
