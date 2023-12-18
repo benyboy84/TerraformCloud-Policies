@@ -1,5 +1,5 @@
 locals {
-  files = fileset("policies", "{aws,azure,global}/*.sentinel")
+  files = fileset("policies", "*/*.sentinel")
 }
 
 output "sentinel" {
