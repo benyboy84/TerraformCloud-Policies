@@ -4,5 +4,5 @@ resource "tfe_policy_set" "test" {
   organization = data.tfe_organization.this.name
   global       = true
   kind         = "sentinel"
-  policy_ids   = [for v in tfe_policy.this : v.id]
+  policy_ids   = [for value in tfe_policy.this : value.id]
 }
