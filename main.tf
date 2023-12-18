@@ -1,5 +1,5 @@
 locals {
-  files = fileset("policies", "**")
+  files = fileset("policies", "**.sentinel")
 }
 
 output "sentinel" {
