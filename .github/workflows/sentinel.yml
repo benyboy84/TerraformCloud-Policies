@@ -38,6 +38,9 @@ jobs:
 
   job2:
     name: Policies Testing
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       matrix:
         policies: ${{ needs.job1.outputs.policies }}
