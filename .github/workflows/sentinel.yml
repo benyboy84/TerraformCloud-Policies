@@ -16,8 +16,8 @@ permissions:
   pull-requests: write
 
 jobs:
-  sentinel:
-    name: Sentinel
+  policies:
+    name: Find Policies
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -26,9 +26,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Find folder
-        id: find
+      - name: policies
+        id: policies
         run: |
-          VALUE=$(find . -name "*.sentinel")
-          echo -e "folder:"
-          echo -e "$VALUE"
+          policies=$(find . -name "*.sentinel" | grep -v -e "/test/")
+          echo -e "Policies:"
+          echo -e "$policies"
