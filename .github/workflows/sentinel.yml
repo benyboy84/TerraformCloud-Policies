@@ -31,7 +31,7 @@ jobs:
       - name: Find Policies
         id: policies
         run: |
-          policies=$(find . -name "*.sentinel" | grep -v -e "/test/")
+          policies=$(find . -name "*.sentinel" | grep -v -e "/test/" | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')
           echo -e "Policies:"
           echo -e "$policies"
           echo "policies=$(find . -name "*.sentinel" | grep -v -e "/test/" | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
