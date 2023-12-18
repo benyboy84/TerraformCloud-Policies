@@ -7,5 +7,5 @@ output "sentinel" {
 }
 
 output "element" {
-  value = { for v in local.files : v => element(split("/", v), 1) }
+  value = { for v in local.files : v => element(split(".", element(split("/", v), 1)), 2) }
 }
