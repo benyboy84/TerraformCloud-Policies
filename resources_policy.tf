@@ -1,6 +1,6 @@
 resource "tfe_policy" "allowed-providers" {
   for_each = local.files
-  name     = element(split("/", each.key), length(split("/", each.key)-1))
+  name     = element(split("/", each.key), length(split("/", each.key) - 1))
   # description  = "This policy uses the tfconfig/v2 import to restrict providers to those in an allowed list."
   organization = data.tfe_organization.this.name
   kind         = "sentinel"
