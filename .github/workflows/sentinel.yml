@@ -27,4 +27,4 @@ jobs:
         id: find
         run: |
           VALUE = find . -name "*.sentinel"
-          echo "${VALUE}" >> "$GITHUB_OUTPUT"
+          echo $VALUE
