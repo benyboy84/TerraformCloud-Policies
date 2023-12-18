@@ -47,8 +47,14 @@ jobs:
         policies: ${{ fromJson(needs.job1.outputs.policies) }}
     steps:
 
+      - name: Branch
+        id: branch
+        run: echo "branch=${GITHUB_HEAD_REF}" >> "$GITHUB_OUTPUT"
+
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.branch.outputs.branch }}
 
       - name: 'Sentinel Test'
         uses: hashicorp/sentinel-github-actions@master
