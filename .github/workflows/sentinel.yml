@@ -59,7 +59,7 @@ jobs:
       - name: 'Sentinel Test'
         uses: hashicorp/sentinel-github-actions@master
         with:
-          stl_actions_version: 0.14.2
+          stl_actions_version: 0.24.0
           stl_actions_subcommand: 'test'
-          stl_actions_working_dir: '${{ matrix.policies }}'
+          stl_actions_working_dir: 'policies/global'
           stl_actions_comment: true
