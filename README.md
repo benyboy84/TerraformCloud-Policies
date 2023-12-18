@@ -33,7 +33,11 @@ The following resources are used by this module:
 
 ## Outputs
 
-No outputs.
+The following outputs are exported:
+
+### <a name="output_sentinel"></a> [sentinel](#output\_sentinel)
+
+Description: n/a
 
 <!-- markdownlint-enable -->
 
