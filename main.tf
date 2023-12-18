@@ -3,5 +3,5 @@ locals {
 }
 
 output "sentinel" {
-  value = {for v in local.files : v => split("/", v)}
+  value = { for v in local.files : v => split("/", v) }
 }
