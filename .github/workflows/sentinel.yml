@@ -26,5 +26,5 @@ jobs:
       - name: Find folder
         id: find
         run: |
-          VALUE = find . -name "*.sentinel"
+          VALUE=$(find . -name "*.sentinel")
           echo $VALUE
