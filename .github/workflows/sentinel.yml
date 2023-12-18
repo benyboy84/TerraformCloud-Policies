@@ -41,3 +41,5 @@ jobs:
     strategy:
       matrix:
         policies: ${{ needs.job1.outputs.policies }}
+    steps: 
+      - run: echo -e "${matrix.policies}"
