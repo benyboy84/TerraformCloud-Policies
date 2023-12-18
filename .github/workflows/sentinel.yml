@@ -53,7 +53,7 @@ jobs:
           ref: ${{ steps.branch.outputs.branch }}
 
       - name: 'Sentinel Test'
-        uses: hashicorp/sentinel-github-actions@v0.7
+        uses: benyboy84/GitHubAction_sentinel@main
         with:
           stl_actions_version: latest
           stl_actions_subcommand: test
