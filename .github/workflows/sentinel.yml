@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    output:
+    outputs:
       policies: ${{ steps.policies.outputs.policies }}
     steps:
 
