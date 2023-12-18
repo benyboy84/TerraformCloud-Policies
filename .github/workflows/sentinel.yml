@@ -45,4 +45,4 @@ jobs:
     #   matrix:
     #     policies: ${{ fromJson(needs.job1.outputs.policies) }}
     steps: 
-      - run: echo ${{ fromJson(needs.job1.outputs.policies) }}
+      - run: echo ${{ needs.job1.outputs.policies }}
