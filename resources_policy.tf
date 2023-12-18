@@ -1,5 +1,5 @@
 resource "tfe_policy" "allowed-providers" {
-  for_each = local.files 
+  for_each = local.files
   name     = each.key
   # description  = "This policy uses the tfconfig/v2 import to restrict providers to those in an allowed list."
   organization = data.tfe_organization.this.name
