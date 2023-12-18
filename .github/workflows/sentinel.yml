@@ -37,7 +37,7 @@ jobs:
           echo "policies=$(find . -name "*.sentinel" | grep -v -e "/test/" | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
 
   job2:
-    name: Policies Testing
+    name: Sentinel Test
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,5 +45,23 @@ jobs:
     strategy:
       matrix:
         policies: ${{ fromJson(needs.job1.outputs.policies) }}
-    steps: 
-      - run: echo ${{ matrix.policies }}
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 'Sentinel Format'
+        uses: hashicorp/sentinel-github-actions@master
+        with:
+          stl_actions_version: 0.14.2
+          stl_actions_subcommand: 'fmt'
+          stl_actions_working_dir: '${{ matrix.policies }}'
+          stl_actions_comment: true
+
+      - name: 'Sentinel Test'
+        uses: hashicorp/sentinel-github-actions@master
+        with:
+          stl_actions_version: 0.14.2
+          stl_actions_subcommand: 'test'
+          stl_actions_working_dir: '.'
+          stl_actions_comment: true
