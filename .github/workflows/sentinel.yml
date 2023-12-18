@@ -42,8 +42,8 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     needs: job1
-    # strategy:
-    #   matrix:
-    #     policies: ${{ fromJson(needs.job1.outputs.policies) }}
+    strategy:
+      matrix:
+        policies: ${{ fromJson(needs.job1.outputs.policies) }}
     steps: 
-      - run: echo ${{ needs.job1.outputs.policies }}
+      - run: echo ${{ matrix.policies }}
