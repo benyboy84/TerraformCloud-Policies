@@ -67,4 +67,4 @@ jobs:
           command: test
           working_dir: "./policies/global"
           comment: true
-   
+    
