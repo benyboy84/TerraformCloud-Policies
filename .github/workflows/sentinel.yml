@@ -55,15 +55,15 @@ jobs:
       - name: 'Sentinel Format'
         uses: benyboy84/GitHubAction_sentinel@main
         with:
-          stl_actions_version: latest
-          stl_actions_subcommand: fmt
-          stl_actions_working_dir: "./policies/global"
-          stl_actions_comment: true
+          version: latest
+          command: fmt
+          working_dir: "./policies/global"
+          comment: true
 
       - name: 'Sentinel Test'
         uses: benyboy84/GitHubAction_sentinel@main
         with:
-          stl_actions_version: latest
-          stl_actions_subcommand: test
-          stl_actions_working_dir: "./policies/global"
-          stl_actions_comment: true
+          version: latest
+          command: test
+          working_dir: "./policies/global"
+          comment: true
