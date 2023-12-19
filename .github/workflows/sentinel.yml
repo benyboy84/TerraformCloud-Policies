@@ -57,7 +57,7 @@ jobs:
         with:
           version: latest
           command: fmt
-          working_dir: ${{ matrix.policies }}
+          working_dir: "./policies/global"
           comment: true
 
       - name: 'Sentinel Test'
