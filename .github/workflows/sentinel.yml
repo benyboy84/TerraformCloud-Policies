@@ -52,6 +52,14 @@ jobs:
         with:
           ref: ${{ steps.branch.outputs.branch }}
 
+      - name: 'Sentinel Format'
+        uses: benyboy84/GitHubAction_sentinel@main
+        with:
+          stl_actions_version: latest
+          stl_actions_subcommand: fmt
+          stl_actions_working_dir: "./policies/global"
+          stl_actions_comment: true
+
       - name: 'Sentinel Test'
         uses: benyboy84/GitHubAction_sentinel@main
         with:
