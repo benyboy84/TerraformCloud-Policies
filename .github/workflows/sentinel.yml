@@ -56,7 +56,7 @@ jobs:
         uses: benyboy84/GitHubAction_sentinel@main
         with:
           version: latest
-          command: fmt
+          check: false
           working_dir: "./policies/global"
           comment: true
 
