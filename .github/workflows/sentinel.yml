@@ -1,0 +1,70 @@
+name: Sentinel
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches:
+      - '*'                      # matches every branch that doesn't contain a '/'
+      - '*/*'                    # matches every branch containing a single '/'
+      - '**'                     # matches every branch
+    paths:
+      # - '**.tf'
+      # - '**.hcl'
+      # - '**.sentinel'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  job1:
+    name: Find Policies
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      policies: ${{ steps.policies.outputs.policies }}
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Find Policies
+        id: policies
+        run: echo "policies=$(find ./policies -type d -maxdepth 1 | tail -n +2 | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
+
+  job2:
+    name: Sentinel Test
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    needs: job1
+    strategy:
+      matrix:
+        policies: ${{ fromJson(needs.job1.outputs.policies) }}
+    steps:
+
+      - name: Branch
+        id: branch
+        run: echo "branch=${GITHUB_HEAD_REF}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.branch.outputs.branch }}
+
+      - name: 'Sentinel Format'
+        uses: benyboy84/GitHubAction_sentinel@v1.0.0
+        with:
+          version: latest
+          check: false
+          working_dir: "./policies/global"
+          comment: true
+
+      # - name: 'Sentinel Test'
+      #   uses: benyboy84/GitHubAction_sentinel@main
+      #   with:
+      #     version: latest
+      #     command: test
+      #     working_dir: "./policies/global"
+      #     comment: true
+               
