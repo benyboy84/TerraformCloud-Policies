@@ -53,7 +53,7 @@ jobs:
           ref: ${{ steps.branch.outputs.branch }}
 
       - name: 'Sentinel Format'
-        uses: benyboy84/GitHubAction_sentinel-fmt@v1.2.0
+        uses: benyboy84/GitHubAction_sentinel-fmt@v1.2.1
         with:
           version: latest
           check: false
