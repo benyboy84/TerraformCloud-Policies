@@ -53,12 +53,18 @@ jobs:
           ref: ${{ steps.branch.outputs.branch }}
 
       - name: 'Sentinel Format'
+        id: fmt 
         uses: benyboy84/GitHubAction_sentinel-fmt@v1.4.0
         with:
           version: latest
           check: true
           working_dir: "./policies/global"
           comment: true
+
+      - name: Git Push
+        if: ${{ steps.fmt.outputs.exitcode == 2 }}
+        run: |
+          echo "Not properly formated"
 
       # - name: 'Sentinel Test'
       #   uses: benyboy84/GitHubAction_sentinel@main
