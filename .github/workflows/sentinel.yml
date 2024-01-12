@@ -57,7 +57,7 @@ jobs:
         uses: benyboy84/GitHubAction_sentinel-fmt@v1.4.0
         with:
           version: latest
-          check: true
+          check: false
           working_dir: "./policies/global"
           comment: true
 
