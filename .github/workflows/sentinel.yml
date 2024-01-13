@@ -36,7 +36,7 @@ jobs:
         id: fmt 
         uses: benyboy84/GitHubAction_sentinel-fmt@v1.5.0
         with:
-          check: false
+          check: true
 
       - name: Git Push
         if: ${{ steps.fmt.outputs.exitcode == 2 }}
