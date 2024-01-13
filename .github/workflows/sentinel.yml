@@ -16,31 +16,11 @@ permissions:
   pull-requests: write
 
 jobs:
-  job1:
-    name: Find Policies
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    outputs:
-      policies: ${{ steps.policies.outputs.policies }}
-    steps:
-
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Find Policies
-        id: policies
-        run: echo "policies=$(find ./policies -type d -maxdepth 1 | tail -n +2 | jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> "$GITHUB_OUTPUT"
-
-  job2:
+  job:
     name: Sentinel Test
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    needs: job1
-    strategy:
-      matrix:
-        policies: ${{ fromJson(needs.job1.outputs.policies) }}
     steps:
 
       - name: Branch
@@ -56,10 +36,7 @@ jobs:
         id: fmt 
         uses: benyboy84/GitHubAction_sentinel-fmt@v1.5.0
         with:
-          version: latest
           check: false
-          working_dir: "./policies/global"
-          comment: true
 
       - name: Git Push
         if: ${{ steps.fmt.outputs.exitcode == 2 }}
